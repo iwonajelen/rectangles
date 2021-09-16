@@ -29,7 +29,6 @@ export const StyledButton = styled.button`
     border-radius: 0 7px 7px 0;
     font-size: 1.1em;
     cursor: pointer;
-    margin-right: 1em;
 
     &:hover {
         opacity: 0.8;

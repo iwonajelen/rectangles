@@ -39,7 +39,7 @@ export function CanvasContainer() {
     return (
         <StyledDiv>
             <Link to="/playground">Playground</Link>
-            <div style={{display: 'flex'}}>
+            <div style={{display: 'flex', justifyContent: 'center'}}>
                 <StyledInput type="text" placeholder="enter project id" value={inputValue} onChange={(event) => setInputValue(event.target.value)}></StyledInput>
                 <StyledButton onClick={handleClick}>Fetch</StyledButton>
             </div>
