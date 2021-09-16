@@ -24,7 +24,7 @@ export function CanvasContainer() {
     const canvasContent = () => {
         if (status === Status.loading) {
             return <h2>Loading...</h2>
-        } else {
+        } else if (project.items && project.items.length > 0) {
             return (
                 <>
                     <span style={{margin: '10px auto', fontWeight: 700}}>{project.name}</span>
@@ -33,6 +33,8 @@ export function CanvasContainer() {
                     </CanvasDiv>
                 </>
             )
+        } else {
+            return <></>;
         }
     }
 
