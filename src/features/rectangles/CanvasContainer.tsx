@@ -4,7 +4,7 @@ import { fetchProjectById, initAndFetch, selectError, selectProject, selectStatu
 import { Canvas } from "./Canvas";
 import { Status } from "./models";
 import { Link } from "react-router-dom";
-import { CanvasDiv, StyledButton, StyledDiv, StyledInput } from "../../styledComponents";
+import { CanvasDiv, StyledButton, StyledDiv, StyledInput } from "../styledComponents";
 
 export function CanvasContainer() {
     const project = useAppSelector(selectProject);

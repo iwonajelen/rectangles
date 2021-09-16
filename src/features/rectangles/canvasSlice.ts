@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
+import { isValidData } from "../utils";
 import { ProjectData, ProjectResponse, ResponseError, Status, CanvasState } from "./models";
 
 const emptyProjectData = {
@@ -32,11 +33,14 @@ export const fetchProjectById = createAsyncThunk<
     }>(  
     'projects/fetchById', 
     async (projectId, thunkAPI) => {
-        const response = await fetch(`https://recruitment01.vercel.app/api/project/${projectId}`); 
-        if(!response.ok) {
-            return thunkAPI.rejectWithValue((await response.json()) as ResponseError)
+        const response = await fetch(`https://recruitment01.vercel.app/api/project/${projectId}`);
+        if (!response.ok) {
+            return thunkAPI.rejectWithValue({error: 1, message: response.statusText});
         }
         const data = (await response.json()) as ProjectData;
+        if (!isValidData(data)) {
+            return thunkAPI.rejectWithValue({error: 1, message: 'Invalid project data'});
+        }
         return data;
     }
 )

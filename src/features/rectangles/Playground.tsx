@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { StyledInput, StyledInputContainer, StyledPlaygroundDiv } from "../../styledComponents";
+import { StyledInput, StyledInputContainer, StyledPlaygroundDiv } from "../styledComponents";
 import { Rectangle } from "./models";
 import { CanvasRectangle, EdgeType, getBoundEdge } from "./Rectangle";
 

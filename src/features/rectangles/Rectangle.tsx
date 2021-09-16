@@ -1,5 +1,5 @@
 import React from "react";
-import { getForegroundColorBasedOnBackground } from "../../utils";
+import { getForegroundColorBasedOnBackground } from "../utils";
 import { Rectangle } from "./models";
 
 export const enum EdgeType {

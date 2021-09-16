@@ -11,7 +11,7 @@ export function Canvas(props: {items: Array<Rectangle>, viewData: { width: numbe
 
     return (
         <svg viewBox={setViewBox(width, height)} width="100%" height="100%">
-            {props.items.map((item: Rectangle) => <CanvasRectangle rectData={item}/>)}
+            {props.items.map((item: Rectangle) => <CanvasRectangle key={item.id} rectData={item}/>)}
         </svg>
     )
 }
