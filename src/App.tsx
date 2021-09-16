@@ -10,7 +10,7 @@ import { Playground } from './features/rectangles/Playground';
 
 function App() {
   return (
-    <div className="App" style={{padding: '1em', background: "#ddd"}}>
+    <div className="App">
       <Router>
         <Switch>
             <Route path="/playground">

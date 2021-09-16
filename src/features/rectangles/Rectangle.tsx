@@ -1,4 +1,5 @@
 import React from "react";
+import { getForegroundColorBasedOnBackground } from "../../utils";
 import { Rectangle } from "./models";
 
 export const enum EdgeType {
@@ -37,6 +38,8 @@ export function CanvasRectangle(props: {rectData: Rectangle}) {
         height: getBoundEdge(props.rectData, EdgeType.height)
     }
 
+    const fgColor = getForegroundColorBasedOnBackground(color);
+
     return (
         <g>
             <rect 
@@ -49,8 +52,8 @@ export function CanvasRectangle(props: {rectData: Rectangle}) {
                 height={boundaryRectangle.height}
                 transform={getTranslate(-boundaryRectangle.width/2, -boundaryRectangle.height/2)}/>
             <rect fill={color} width={width} height={height} transform={getTransform(props.rectData)}/>
-            <circle cx={x} cy={y} r="4" fill="white"></circle>
-            <text x={x+10} y={y+10} fill="black">{rotation}</text>
+            <circle cx={x} cy={y} r="4" fill={fgColor}></circle>
+            <text x={x+10} y={y+10} fill={fgColor}>{rotation}&deg;</text>
         </g>
     );
 }

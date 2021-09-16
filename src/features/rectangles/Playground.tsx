@@ -6,9 +6,19 @@ import { CanvasRectangle, EdgeType, getBoundEdge } from "./Rectangle";
 
 const StyledInputContainer = styled.div`
     display: flex;
-    width: 100%;
     justify-content: space-evenly;
     align-items: center;
+    width: 50%;
+    margin: 0 auto;
+
+    @media (max-width: 768px) {
+        margin: 0;
+        width: 100%;
+    
+        & input[type="number"] {
+            width: 30%;
+        }
+    }
 `;
 
 const StyledDiv = styled.div`
@@ -16,6 +26,14 @@ const StyledDiv = styled.div`
     margin: 2em auto;
     width: 80vw;
     height: 60vh;
+    border: 1px solid #777;
+    box-shadow: 0 0 20px #ddd;
+
+    @media (max-width: 768px) {
+        & h3 {
+            margin: 0.3em auto;
+        }
+    }
 `;
 
 
@@ -42,7 +60,7 @@ export function Playground() {
         height: height,
         x: 300,
         y: 300,
-        color: '#77deab',
+        color: '#33ca90',
         rotation: rotation
     }
 
@@ -65,22 +83,19 @@ export function Playground() {
                 <text x="-500" y="240" fontSize="1.2em" fill="black">width*sin(alpha) + height*cos(alpha)</text>
                 <text x="-300" y="210" fontSize="1.2em" fill="red">{boundaryRectangle.height.toFixed(2)}</text>
             </svg>
+                <h3>Rotation</h3>
             <StyledInputContainer>
-                <h3> Rotation</h3>
                 <input type="range" id="rotation" name="rotation" min="0" max="360" value={rotation} step="1" onChange={handleOnRotationChange}></input>
-                <div>{rotation}</div>
                 <input type="number" value={rotation} onChange={handleOnRotationChange}></input>
             </StyledInputContainer>
-            <StyledInputContainer>
                 <h3>Width</h3>
+            <StyledInputContainer>
                 <input type="range" id="width" name="width" min="100" max="400" value={width} step="1" onChange={handleOnWidthChange}></input>
-                <div>{width}</div>
                 <input type="number" value={width} onChange={handleOnWidthChange}></input>
-            </StyledInputContainer>
-            <StyledInputContainer>    
+            </StyledInputContainer> 
                 <h3>Height</h3>
+            <StyledInputContainer>
                 <input type="range" id="height" name="height" min="100" max="400" value={height} step="1" onChange={handleOnHeightChange}></input>
-                <div>{height}</div>
                 <input type="number" value={height} onChange={handleOnHeightChange}></input>
             </StyledInputContainer>
         </StyledDiv>
