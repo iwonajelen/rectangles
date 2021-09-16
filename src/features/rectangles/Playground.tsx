@@ -1,57 +1,39 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { StyledInput, StyledInputContainer, StyledPlaygroundDiv } from "../../styledComponents";
 import { Rectangle } from "./models";
 import { CanvasRectangle, EdgeType, getBoundEdge } from "./Rectangle";
 
-const StyledInputContainer = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 50%;
-    margin: 0 auto;
-
-    @media (max-width: 768px) {
-        margin: 0;
-        width: 100%;
-    
-        & input[type="number"] {
-            width: 30%;
-        }
-    }
-`;
-
-const StyledDiv = styled.div`
-    background: white;
-    margin: 2em auto;
-    width: 80vw;
-    height: 60vh;
-    border: 1px solid #777;
-    box-shadow: 0 0 20px #ddd;
-
-    @media (max-width: 768px) {
-        & h3 {
-            margin: 0.3em auto;
-        }
-    }
-`;
-
+const MIN_LENGTH = 100;
+const MAX_LENGTH = 400;
+const MIN_ROTATION = 0;
+const MAX_ROTATION = 360;
 
 export function Playground() {
     const [rotation, setRotation] = useState(0);
     const [width, setWidth] = useState(200);
     const [height, setHeight] = useState(300);
 
+    const getValue = (targetValue: number, minValue: number, maxValue: number): number => {
+        if (!targetValue || targetValue < minValue) {
+            return minValue;
+        } else if (targetValue > maxValue) {
+            return maxValue;
+        } else {
+            return targetValue;
+        }
+    }
+
     const handleOnRotationChange = (event: any) => {
-        setRotation(event.target.value);
+        setRotation(getValue(event.target.value, MIN_ROTATION, MAX_ROTATION));
     }
 
     const handleOnWidthChange = (event: any) => {
-        setWidth(event.target.value);
+        setWidth(getValue(event.target.value, MIN_LENGTH, MAX_LENGTH));
     }
 
     const handleOnHeightChange = (event: any) => {
-        setHeight(event.target.value);
+        setHeight(getValue(event.target.value, MIN_LENGTH, MAX_LENGTH));
     }
 
     const rectangle: Rectangle = {
@@ -73,7 +55,7 @@ export function Playground() {
     return (
         <>
         <Link style={{marginTop: "20px"}} to="/">Back</Link>
-        <StyledDiv>
+        <StyledPlaygroundDiv>
             <svg viewBox="0 0 600 600" width="100%" height="100%">
                 <CanvasRectangle rectData={rectangle}></CanvasRectangle>
                 <text x="-500" y="100" fontSize="1.4em" fill="black">border width</text>
@@ -86,19 +68,19 @@ export function Playground() {
                 <h3>Rotation</h3>
             <StyledInputContainer>
                 <input type="range" id="rotation" name="rotation" min="0" max="360" value={rotation} step="1" onChange={handleOnRotationChange}></input>
-                <input type="number" value={rotation} onChange={handleOnRotationChange}></input>
+                <StyledInput type="number" value={rotation} min="0" max="360" onChange={handleOnRotationChange}></StyledInput>
             </StyledInputContainer>
                 <h3>Width</h3>
             <StyledInputContainer>
                 <input type="range" id="width" name="width" min="100" max="400" value={width} step="1" onChange={handleOnWidthChange}></input>
-                <input type="number" value={width} onChange={handleOnWidthChange}></input>
+                <StyledInput type="number" value={width}  min="100" max="400" onChange={handleOnWidthChange}></StyledInput>
             </StyledInputContainer> 
                 <h3>Height</h3>
             <StyledInputContainer>
                 <input type="range" id="height" name="height" min="100" max="400" value={height} step="1" onChange={handleOnHeightChange}></input>
-                <input type="number" value={height} onChange={handleOnHeightChange}></input>
+                <StyledInput type="number" value={height} min="100" max="400" onChange={handleOnHeightChange}></StyledInput>
             </StyledInputContainer>
-        </StyledDiv>
+        </StyledPlaygroundDiv>
         </>
     )
 }

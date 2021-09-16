@@ -5,7 +5,7 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import { Canvas } from './features/rectangles/Canvas';
+import { CanvasContainer } from './features/rectangles/CanvasContainer';
 import { Playground } from './features/rectangles/Playground';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
               <Playground />
             </Route>
             <Route path="/">
-              <Canvas />
+              <CanvasContainer />
             </Route>
           </Switch>
       </Router>
